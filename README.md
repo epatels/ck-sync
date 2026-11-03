@@ -11,7 +11,7 @@ logged in.
 winget install epatels.CKSync
 ```
 
-*(The winget command works once the package has been approved in the Windows Package Manager catalogue.)*
+
 
 ## What it does
 
