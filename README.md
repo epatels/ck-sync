@@ -5,7 +5,7 @@ anything. Whatever it replaces or deletes is kept in a backup folder, and every 
 made. It follows renames, can keep a pair one-way, and can sync by itself on a schedule, even when nobody is
 logged in.
 
-[**Download the latest version**](https://github.com/epatels/ck-sync/releases/latest) · Windows 10 or 11, 64-bit
+[**Download the latest version**](https://github.com/epatels/ck-sync/releases/latest) · Windows 10, Windows 11 and Windows Server 2022 or 2025 (with a desktop), 64-bit
 
 ```
 winget install epatels.CKSync
