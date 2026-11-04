@@ -11,8 +11,6 @@ logged in.
 winget install epatels.CKSync
 ```
 
-
-
 ## What it does
 
 - **Get files back (new in 2.1).** *Get files back…* lists what CK Sync kept when it replaced or deleted files, by day,
