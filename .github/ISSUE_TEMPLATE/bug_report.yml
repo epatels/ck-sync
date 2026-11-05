@@ -1,1 +1,68 @@
-
+name: Report a problem
+description: Something does not work, or went wrong.
+title: "[Problem] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping. **This page is public.** Do not paste passwords, access tokens, e-mail addresses or private file names. Black out anything personal in screenshots and logs.
+  - type: input
+    id: version
+    attributes:
+      label: CK Sync version
+      description: Shown in the title bar of the window, or run `CK_Sync_cli.exe --version`.
+      placeholder: "2.1.15"
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: Where did you get it?
+      options:
+        - Setup program from GitHub
+        - Microsoft Store
+        - winget
+        - Not sure
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: "Windows 11 24H2"
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to repeat it
+      placeholder: |
+        1. ...
+        2. ...
+  - type: dropdown
+    id: where
+    attributes:
+      label: What kind of folders were involved?
+      multiple: true
+      options:
+        - Local folders
+        - Network share
+        - Pen drive or external disk
+        - Google Drive
+        - OneDrive
+        - Dropbox
+        - Other cloud service
+        - Background sync (schedule)
+        - Command line
+  - type: textarea
+    id: log
+    attributes:
+      label: Log or error message (optional)
+      description: "Logs are in `%APPDATA%\\CK Sync\\logs`. Copy only the lines that matter, and remove private names first."
+      render: text

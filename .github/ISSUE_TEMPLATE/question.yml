@@ -1,0 +1,19 @@
+name: Ask a question
+description: You are not sure how something works.
+title: "[Question] "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The manual (`INSTRUCTIONS.md`) may already answer it. This page is public: do not include personal information.
+  - type: input
+    id: version
+    attributes:
+      label: CK Sync version (optional)
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+    validations:
+      required: true

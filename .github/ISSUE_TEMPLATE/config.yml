@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Privacy policy
+    url: https://github.com/epatels/ck-sync/blob/main/PRIVACY.md
+    about: What CK Sync does and does not collect.
