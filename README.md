@@ -69,6 +69,15 @@ winget install epatels.CKSync
   make your first one.
 - **Live status for every pair.** The pair list shows a turning ring while a pair is being checked or synced,
   a green tick when it is finished or already in step, and a clear warning when something needs a look.
+- **Dark, Light or the same as Windows (new in 2.1.12 and 2.1.13).** Pick the look in **Settings > Theme**; it changes
+  at once, in every window, and is remembered. Dark (the default) is near-black with a gold accent, Light is near-white
+  with a terracotta accent. The **Sync** button and the row of the chosen pair use the accent colour. On Windows the title
+  bars match.
+- **Per-pair background sync (new in 2.1.14).** Every pair can have its own trigger: for example one pair every
+  4 hours while another syncs soon after its files change (or both). Set it in the pair's Edit window, or in
+  *Settings, Background sync* with **Schedule of the selected pair...**. The *Also sync when Windows shuts down*
+  option was taken out of the window (it did not work reliably). CK Sync no longer shows a pop-up when it starts at
+  login, and its notices are named "CK Sync" instead of "Python".
 - **Sync by itself, even when logged out.** Choose which pairs to keep in step and how often (from every 15
   minutes to once a day). It runs through Windows Task Scheduler, also with nobody logged in. If anything looks
   wrong it holds that pair back and changes nothing.
@@ -79,11 +88,13 @@ winget install epatels.CKSync
 - **Updates itself.** It checks this page once a day. An update is installed only if it carries the
   developer's signature and matches its checksum, and never while a sync is running.
 - **Private.** No usage statistics, no tracking, no accounts of ours. CK Sync contacts GitHub to ask whether a newer
-  version exists, and, only if you add a cloud account, that cloud service. Cloud sign-in details are stored encrypted on your PC.
+  version exists, and, only if you add a cloud account or switch on e-mail alerts, that service. Cloud sign-in details are
+  stored encrypted on your PC. Read the full [privacy policy](PRIVACY.md).
 
 ## Install
 
-1. Download `CK_Sync_Setup_<version>.exe` from the [Releases page](https://github.com/epatels/ck-sync/releases/latest).
+1. Download `CK_Sync_Setup_<version>.exe` from the [Releases page](https://github.com/epatels/ck-sync/releases/latest),
+   or the small `CK_Sync_Web_Setup.exe` there, which downloads and installs the newest version for you.
 2. Run it. No administrator rights are needed unless you choose to install for all users.
 3. The program is not code-signed, so Windows SmartScreen may show *Windows protected your PC* the first
    time. Choose **More info**, then **Run anyway**.
@@ -125,6 +136,9 @@ files use `python -m syncapp` instead. Add `-h` to any command for help.
 | `CK_Sync_cli.exe sync --threads N` | Handle up to N small files at once (default 4; 1 = one at a time) |
 | `CK_Sync_cli.exe status` | List the pairs, whether each is in the background sync, their direction if one-way, and how the last sync went |
 | `CK_Sync_cli.exe preview LEFT RIGHT` | Show what a sync of two folders would do and why. Changes nothing and uses no saved pair |
+| `CK_Sync_cli.exe sync --own` | Sync only the pairs with their own background timer that are due now |
+| `CK_Sync_cli.exe background PAIR ...` | Give one pair its own background sync: `--every MINUTES`, `--daily HH:MM` and/or `--on-change` (soon after its files change); `--off` (manual only); `--follow` (the global schedule) |
+| `CK_Sync_cli.exe watch` | Stay running and sync the background pairs soon after their files change |
 | `CK_Sync_cli.exe schedule on` | Create or update the background schedule (Windows only) |
 | `CK_Sync_cli.exe schedule off` | Remove the schedule |
 | `CK_Sync_cli.exe schedule status` | Show whether it is on, when it runs next, and how the last run ended |
@@ -139,6 +153,8 @@ files use `python -m syncapp` instead. Add `-h` to any command for help.
   `--threads N`;
   `--db FILE` (use another saved-pairs file, for testing).
 - `status`: `--db FILE`.
+- `background`: `--every MINUTES` or `--daily HH:MM` (its own timer), `--on-change` (soon after its files change: alone
+  it means no timer; together with `--every` or `--daily` it means both), `--off`, `--follow`; `--db FILE`.
 - `preview`: `--quick` (compare size and date only, faster); `--thorough`; `--threads N`; `--exclude PATTERN` (leave out files such as
   `Thumbs.db`; repeat for more); `--direction` (`two_way`, the default, or one-way: `lr_mirror`, `lr_add`,
   `rl_mirror`, `rl_add`).
@@ -188,10 +204,30 @@ Use **Settings, Apps** in Windows and remove *CK Sync*. This also removes the ba
 pairs, settings and logs stay in `%APPDATA%\CK Sync` until you delete that folder. The `.cksyncbackup`
 folders next to your files are yours to keep or delete.
 
-## Problems and questions
+## Feedback, problems and questions
 
-Please open an issue on this repository (the **Issues** tab). It helps to say which version you have (it is
-in the title bar) and what you did. Do not paste private file names or passwords.
+Your feedback is welcome. Use the **Issues** tab of this repository:
+
+- [**Report a problem**](https://github.com/epatels/ck-sync/issues/new?template=bug_report.yml)
+- [**Suggest an idea**](https://github.com/epatels/ck-sync/issues/new?template=feature_request.yml)
+- [**Ask a question**](https://github.com/epatels/ck-sync/issues/new?template=question.yml)
+- [See what others have reported](https://github.com/epatels/ck-sync/issues)
+
+It helps to say which version you have (it is in the title bar) and what you did. **Issues are public:** do not paste
+passwords, access tokens, e-mail addresses or private file names. Black out anything personal in screenshots and logs.
+
+## Privacy
+
+**CK Sync does not collect, send or sell any personal information.** There are no accounts with us, no usage
+statistics and no tracking. Your pairs, settings, logs and backups stay on your PC.
+
+CK Sync uses the internet only to:
+
+- ask GitHub whether a newer version exists (the installer version; the Microsoft Store version is updated by the Store),
+- talk to a cloud service (Google Drive, OneDrive, Dropbox and so on), only if you add a cloud account,
+- send an e-mail alert through the mail server you enter, only if you switch alerts on.
+
+The full text is in the [privacy policy](PRIVACY.md).
 
 ## About this repository
 
