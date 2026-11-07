@@ -93,9 +93,8 @@ winget install epatels.CKSync
 
 ## Install
 
-1. Download `CK_Sync_Setup_<version>.exe` from the [Releases page](https://github.com/epatels/ck-sync/releases/latest),
-   or the small `CK_Sync_Web_Setup.exe` there, which downloads and installs the newest version for you.
-2. Run it. No administrator rights are needed unless you choose to install for all users.
+1. Download `CK_Sync_Setup_<version>.exe` from the [Releases page](https://github.com/epatels/ck-sync/releases/latest).
+2. Run it. It installs CK Sync for all users of the PC, so Windows asks for administrator rights.
 3. The program is not code-signed, so Windows SmartScreen may show *Windows protected your PC* the first
    time. Choose **More info**, then **Run anyway**.
 
